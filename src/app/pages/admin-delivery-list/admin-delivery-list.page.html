@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">
+      Administrar Deliverys
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>     
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated placeholder="Buscar" (ionInput)="searchUser($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-segment class="background" color="primary" [(ngModel)]="yudsegment">
+    <ion-segment-button value="active">
+      <ion-label><div>Activos</div></ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="inactive">
+      <ion-label><div>Inactivos</div></ion-label>
+    </ion-segment-button>  
+  </ion-segment>
+
+  <div [ngSwitch]="yudsegment">
+
+    <div *ngSwitchCase="'active'">    
+
+  <ion-list *ngIf="active && active.length > 0">
+
+    <div *ngFor="let user of active | userFilter: result">
+      
+      <div *ngIf="user.photo">
+      <ion-item [routerLink]="['/admin-user-profile/', user.id]" detail>
+        <ion-avatar slot="start">
+          <img src="{{user.photo}}">
+        </ion-avatar>
+        <ion-label> <strong>{{user.name}}</strong> 
+          <div style="font-size: 13px;color: gray;">Entregas hoy: {{user.orders}}</div>         
+        </ion-label>     
+      </ion-item>
+</div>
+
+<div *ngIf="!user.photo">
+  <ion-item [routerLink]="['/admin-user-profile/', user.id]" detail>
+    <ion-avatar slot="start">
+      <img src="../../../assets/img/profile-default.png">
+    </ion-avatar>
+    <ion-label> <strong>{{user.name}}</strong>
+      <div style="font-size: 13px;color: gray;">Entregas hoy: {{user.orders}}</div>
+    </ion-label>
+  </ion-item>
+</div>
+    </div>
+
+  </ion-list>
+
+  <div *ngIf="active && active.length == 0">
+    <br><br>
+    <img src="../../../assets/img/nouserdelivery.jpg" alt="">
+  </div>
+</div>
+
+<div *ngSwitchCase="'inactive'">
+ 
+
+  <ion-list *ngIf="inactive && inactive.length > 0">
+
+    <div *ngFor="let user of inactive | userFilter: result">
+      
+      <div *ngIf="user.photo">
+      <ion-item [routerLink]="['/admin-user-profile/', user.id]" detail>
+        <ion-avatar slot="start">
+          <img src="{{user.photo}}">
+        </ion-avatar>
+        <ion-label> <strong>{{user.name}}</strong>
+          <div style="font-size: 13px;color: gray;">Entregas hoy: {{user.orders}}</div>
+        </ion-label>     
+      </ion-item>
+</div>
+
+<div *ngIf="!user.photo">
+  <ion-item [routerLink]="['/admin-user-profile/', user.id]" detail>
+    <ion-avatar slot="start">
+      <img src="../../../assets/img/profile-default.png">
+    </ion-avatar>
+    <ion-label> <strong>{{user.name}}</strong> 
+      <div style="font-size: 13px;color: gray;">Entregas hoy: {{user.orders}}</div>
+    </ion-label>
+  </ion-item>
+</div>
+    </div>
+
+  </ion-list>
+
+  <div *ngIf="inactive && inactive.length == 0">
+    <br><br>
+    <img src="../../../assets/img/nouserdelivery.jpg" alt="">
+  </div>
+
+
+</div>
+
+
+
+
+</div>
+
+</ion-content>

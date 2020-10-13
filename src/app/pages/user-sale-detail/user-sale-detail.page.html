@@ -1,0 +1,142 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar> 
+
+      <ion-buttons slot="start">
+        <ion-back-button color="light" defaultHref="['/store-home']"> </ion-back-button>
+      </ion-buttons>
+
+
+      <div slot="end"  style="font-size: 12px;color: #ffffff;">
+         <strong>Fecha:</strong> {{date | date:'dd/MM/yyyy'}} <br>
+        <strong>Hora:</strong> {{date | date:'shortTime'}} <br>     
+      <div *ngIf="delivered == done">
+        
+        <ion-icon name="checkmark-circle"></ion-icon>
+        <strong> Entregado: </strong>{{delivered}}
+         </div>  
+      <div *ngIf="delivered !== done"> <strong>Entregado:</strong> {{delivered}}</div> 
+    </div>
+
+    <ion-buttons *ngIf="delivered !== done" slot="end">
+      <ion-button (click)="saleOptionsNoDelivered(date)">
+        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>   
+
+    <ion-buttons *ngIf="delivered == done" slot="end">
+      <ion-button (click)="saleOptionsDelivered()">
+        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-card *ngIf="role !== 'delivery'"  style="padding: 25px;">
+    <ion-card-content>
+
+      <ion-grid fixed>
+        <ion-row class="ion-no-padding">
+          <ion-col size="4">
+            <div style="font-size: 14px;color: #0575E6;"><strong>Productos</strong> </div>
+          </ion-col>
+          <ion-col size="4">
+            <div class="ion-text-center" style="font-size: 14px;color: #0575E6;"><strong>Cantidad</strong> </div>
+          </ion-col>
+          <ion-col size="4">
+            <div style="font-size: 14px;color: #0575E6;" class="ion-text-right"><strong>Precio</strong></div>
+          </ion-col>
+          <div style="color: #dedede;;">
+            ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+          </div>
+        </ion-row>
+
+        
+
+        <div *ngIf="content">
+          <ion-row class="ion-no-padding" *ngFor="let product of content.products">
+            <ion-col size="4">
+              <div class="circle">
+                <img src="{{product.img}}">                 
+              </div>
+              <div style="font-size: 13px;">{{product.name}} </div>
+            </ion-col>
+            <ion-col size="4">
+              <div class="ion-text-center" style="font-size: 13px;">
+                {{product.amount}} </div>
+            </ion-col>
+            <ion-col size="4">
+              <div  style="font-size: 13px;color: green;" class="ion-text-right">{{product.price*product.amount | currency: 'USD'}}
+              </div>
+            </ion-col>
+            <div style="color: #dedede;;">
+              ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+            </div>
+          </ion-row>
+        </div>
+      </ion-grid>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-grid style="padding-top: 15px;">
+        <ion-row>
+          <ion-col size="6">
+            <strong>Total:</strong>
+          </ion-col>
+          <ion-col size="6" class="ion-text-end">            
+            <strong  style="color: green;">{{ total | currency:'USD' }}</strong>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ion-card *ngIf="role == 'delivery'"  style="padding: 25px;">
+    <ion-card-content>
+
+      <ion-grid fixed>
+        <ion-row class="ion-no-padding">
+          <ion-col size="6">
+            <div style="font-size: 14px;color: #0575E6;"><strong>Productos</strong> </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="ion-text-center" style="font-size: 14px;color: #0575E6;"><strong>Cantidad</strong> </div>
+          </ion-col>         
+          <div style="color: #dedede;;">
+            ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+          </div>
+        </ion-row>
+
+        
+
+        <div *ngIf="content">
+          <ion-row class="ion-no-padding" *ngFor="let product of content.products">
+            <ion-col size="6">
+              <div class="circle">
+                <img src="{{product.img}}">                 
+              </div>
+              <div style="font-size: 13px;">{{product.name}} </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="ion-text-center" style="font-size: 13px;">
+                {{product.amount}} </div>
+            </ion-col>            
+            <div style="color: #dedede;;">
+              ________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+            </div>
+          </ion-row>
+        </div>
+      </ion-grid>
+    </ion-card-content>    
+
+  </ion-card>
+
+ 
+
+</ion-content>

@@ -1,0 +1,130 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title style="padding-left: 10px;" color="light">
+            <img src="../../../assets/img/ecommerce.png" width="100px" height="41px">
+        </ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button color="light" menu="main-menu">
+            </ion-menu-button>
+            <ion-badge *ngIf="user.notifications > 0" class="notifications-badge"
+                       color="danger">{{user.notifications}} </ion-badge>
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="openCart()">
+                <div class="cart-length">{{ cartItemCount | async }}</div>
+                <ion-icon color="light" name="cart" class="cart-icon"></ion-icon>
+                <ion-icon color="light" class="arrow" name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content class="ion-padding background">
+
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-slides [options]="slideOpts">
+
+        <ion-slide (click)="goToStore()" *ngFor="let n of news">
+
+            <ion-card class="border ion-padding">
+                <div class="caja">
+                    <div class="box">
+                        <img style="opacity: 95%;" src="{{n.img}}">
+                        <div class="child-card-title">{{n.name}}</div>
+                        <ion-button class="child-button" color="light" expand="block" shape="round"
+                                    (click)="goToStore()">
+                            <fa-icon style="font-size: 20px;color: #1f1f1f;" slot="end" [icon]="faStore"></fa-icon>
+                        </ion-button>
+                    </div>
+                </div>
+            </ion-card>
+
+
+        </ion-slide>
+
+    </ion-slides>
+
+
+    <br>
+    <ion-item [routerLink]="['/store-categorys']" style="padding-bottom: 10px;" detail>
+        <ion-label color="primary">
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col class="ion-text-start" size="6">Categorías</ion-col>
+                    <ion-col class="ion-text-end" size="6">
+                        <div style="font-size: 14px;padding-right: 4px;color: gray;">Ver Todo</div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+    </ion-item>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-text-center" size="4" *ngFor="let c of categorys">
+                <div (click)="goToCategory(c.id)" class="circulo">
+                    <div class="circle">
+                        <img style="opacity: 90%;" src="{{c.img}}">
+                        <div *ngIf="c.name !== 'Hamburguesas'" class="child-title">{{c.name}} </div>
+                        <div *ngIf="c.name == 'Hamburguesas'" class="child-long-title">{{c.name}} </div>
+                    </div>
+                </div>
+                <br>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+
+    <ion-item [routerLink]="['/store-products-all']" style="padding-bottom: 10px;" detail>
+        <ion-label color="primary">
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col class="ion-text-start" size="6">Recientes</ion-col>
+                    <ion-col class="ion-text-end" size="6">
+                        <div style="font-size: 14px;padding-right: 4px;color: gray;">Ver Todo</div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+    </ion-item>
+    <ion-slides [options]="slideProducts">
+        <ion-slide style="padding: 2px;" *ngFor="let p of products">
+
+            <ion-card class="background">
+                <div class="cuadrado">
+                    <div class="square">
+                        <img src="{{p.img}}">
+                    </div>
+                </div>
+
+                <ion-card-header style="padding: 2px;">
+                    <div>
+                        <div class="ion-text-start" style="font-size: 14px;color: black;"><strong>{{ p.name }}</strong>
+                        </div>
+                        <ion-card-subtitle hidden color="light">{{p.category}}</ion-card-subtitle>
+                        <ion-card-subtitle class="ion-text-start"
+                                           style="color: rgb(58, 58, 58);font-size: 16px;"> {{ p.price | currency:'USD' }}</ion-card-subtitle>
+                    </div>
+                </ion-card-header>
+
+                <ion-card-content style="padding: 12px;">
+                    <ion-button class="add" size="small" expand="block" (click)="addToCart(p)">
+                        <ion-icon style="font-size: 23px;" name="cart"></ion-icon>
+                        <ion-icon name="add"></ion-icon>
+                    </ion-button>
+                </ion-card-content>
+
+            </ion-card>
+
+        </ion-slide>
+    </ion-slides>
+
+
+</ion-content>

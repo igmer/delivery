@@ -1,0 +1,155 @@
+<ion-header class="ion-no-border" style="padding: 12px;">
+    <ion-toolbar>
+
+        <ion-buttons class="ex" slot="end">
+            <ion-button (click)="close()" fill="clear" color="dark">
+                <ion-icon style="font-size: 20px;" name="close" slot="start"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title class="ion-padding" *ngIf="payMethods == false && showCart == true">
+            <img src="../../../assets/img/logocart.jpg" width="90px" height="37px">
+        </ion-title>
+
+        <ion-buttons slot="start" *ngIf="showCart == false">
+            <ion-button (click)="backToCart()" shape="round">
+                <div style="font-size: 25px;">
+                    <ion-icon color="primary" name="arrow-back"></ion-icon>
+                </div>
+            </ion-button>
+        </ion-buttons>
+        <div *ngIf="payMethods == true && showCart == false" class="ion-text-center">
+            <ion-title color="primary">Método de pago:</ion-title>
+        </div>
+
+        <div *ngIf="payMethods == false && showCart == false && mobilePayment == true" class="ion-text-center">
+            <ion-title color="primary">Pagar:</ion-title>
+        </div>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content style="padding: 8px;" fullscreen>
+
+    <div *ngIf="payMethods == false && showCart == true">
+        <ion-item style="padding: 12px;" *ngFor="let p of cart">
+
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="4">
+                        <div class="circle">
+                            <img src="{{p.img}}">
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="ion-text-start">
+                            <strong>{{p.name}}</strong>
+                            <div style="color: green;">{{ p.amount * p.price | currency:'USD' }}</div>
+
+                            <ion-button class="ion-no-padding" fill="clear" size="small" (click)="decreaseCartItem(p)">
+                                <ion-icon style="color: #004ee0;" name="remove-circle" slot="icon-only"></ion-icon>
+                            </ion-button>
+                            <ion-button class="ion-no-padding" style="padding-left: 8px;" fill="clear" size="small">
+                                <div style="color: #004ee0;"> {{ p.amount }}  </div>
+                            </ion-button>
+
+                            <ion-button class="ion-no-padding" style="padding-left: 8px;" fill="clear" size="small"
+                                        (click)="increaseCartItem(p)">
+                                <ion-icon style="color: #004ee0;" name="add-circle" slot="icon-only"></ion-icon>
+                            </ion-button>
+                        </div>
+                    </ion-col>
+
+                    <ion-col size="2">
+                        <ion-button color="medium" fill="clear" (click)="removeCartItem(p)">
+                            <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+
+
+                </ion-row>
+            </ion-grid>
+
+
+        </ion-item>
+    </div>
+
+
+    <ion-grid fixed *ngIf="payMethods == true && showCart == false">
+
+        <ion-row style="padding: 15px;">
+            <div class="ion-activatable ripple-parent">
+                <ion-card>
+                    <ion-item (click)="savePayPalSale()">
+                        <ion-col size="6">
+                            <img src="../../../assets/img/mobilepay.jpg" alt="">
+                        </ion-col>
+                        <ion-col size="6">
+                            <div style="color: gray;font-size: 20px;">Métodos Alternos</div>
+                        </ion-col>
+                    </ion-item>
+                </ion-card>
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </div>
+        </ion-row>
+
+
+        <ion-row style="padding: 15px;">
+            <div class="ion-activatable ripple-parent">
+                <ion-card>
+                    <ion-item (click)="PayPalPayment()">
+                        <ion-col size="6">
+                            <img src="../../../assets/img/paypal.jpg" alt="">
+                        </ion-col>
+                        <ion-col size="6">
+                            <div style="color: gray;font-size: 20px;">PayPal</div>
+                        </ion-col>
+                    </ion-item>
+                </ion-card>
+                <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </div>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="ion-text-center">
+                    <div style="color: gray;font-size: 15px;">Cuenta PayPal de Prueba:</div>
+                    <div style="color: #002e86;font-size: 13px;">usuario-prueba@paypal.com</div>
+                    <div style="color: #019ade;font-size: 13px;">Contraseña: prueba12345</div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+</ion-content>
+
+
+<ion-footer style="padding: 12px;" no-shadow>
+
+
+    <div class="ion-padding" *ngIf="payMethods == false && showCart == true">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6">
+                    <strong>Total:</strong>
+                </ion-col>
+                <ion-col size="6" class="ion-text-end">
+                    <div style="font-size: 15px;"><strong>{{ getTotal() | currency:'USD' }}  </strong></div>
+                    <br>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+        <ion-button (click)="paymentMethods()" class="button-pay"
+                    expand="full">
+            Pagar
+        </ion-button>
+    </div>
+
+
+</ion-footer>

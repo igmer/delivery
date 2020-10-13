@@ -1,0 +1,134 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-menu-button color="light" menuId="main-menu"></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title color="light">Delivery</ion-title>
+
+
+        <ion-buttons slot="end">
+            <ion-button (click)="countAlert()">
+                <div style="font-size: 16px;color: aliceblue;">
+                    <fa-icon [icon]="faTruck"></fa-icon>
+                    : <strong>{{orders}}</strong>
+                </div>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-segment class="background" [(ngModel)]="yudsegment">
+        <ion-segment-button value="nodeliver">
+            <ion-label>Por Entregar</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mydeliver">
+            <ion-label> Mis Entregas</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <div [ngSwitch]="yudsegment">
+
+        <div *ngSwitchCase="'nodeliver'">
+
+
+            <ion-grid *ngIf="sales && sales.length > 0" fixed>
+                <ion-row>
+                    <ion-col size="6" *ngFor="let sale of sales">
+                        <ion-card class="ion-text-center background">
+                            <ion-card-header>
+
+                                <div class="ion-activatable ripple-parent">
+
+                                    <img (click)="confirmTakeSale(sale.date, sale.client, user.name, sale.clientToken)"
+                                         class="ion-no-padding" src="../../../assets/img/deliverywait.png" alt="">
+                                    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+                                </div>
+                                <br>
+
+                                <div style="font-size: 16px;color: rgb(92, 92, 92);" class="pb-1">
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    {{sale.date | date:'dd/MM/yyyy'}} <br>
+                                    <ion-icon name="time-outline"></ion-icon>
+                                    {{sale.date| date:'shortTime'}}
+                                </div>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-button (click)="userProfile(sale.client)" class="client" expand="block"
+                                            size="small" shape="round">
+                                    <div style="font-size: 13px;color: white;">Cliente</div>
+                                    <ion-icon slot="end" name="person"></ion-icon>
+                                </ion-button>
+
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <div *ngIf="sales && sales.length == 0" class="ion-no-padding ion-text-center">
+                <br><br><br>
+                <img src="../../../assets/img/noorders.jpg" height="350px" width="350px" alt="">
+            </div>
+        </div>
+
+
+        <div *ngSwitchCase="'mydeliver'">
+            <ion-grid *ngIf="myDelivery && myDelivery.length > 0" fixed>
+                <ion-row>
+                    <ion-col size="6" *ngFor="let sale of myDelivery">
+                        <ion-card class="ion-text-center background">
+                            <ion-card-header>
+                                <img *ngIf="sale.delivered == 'En Proceso'"
+                                     src="../../../assets/img/delivery_iconwait.png" alt="">
+                                <img *ngIf="sale.delivered == 'Si'" src="../../../assets/img/delivery_icon_ready.png"
+                                     alt="">
+                                <br>
+
+                                <div style="font-size: 16px;color: rgb(92, 92, 92);" class="pb-1">
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    {{sale.date | date:'dd/MM/yyyy'}} <br>
+                                    <ion-icon name="time-outline"></ion-icon>
+                                    {{sale.date| date:'shortTime'}}
+                                </div>
+
+                            </ion-card-header>
+                            <ion-card-content>
+                                <ion-button (click)="userProfile(sale.client)" class="client" expand="block"
+                                            size="small" shape="round">
+                                    <div style="font-size: 13px;color: white;">Cliente</div>
+                                    <ion-icon slot="end" name="person"></ion-icon>
+                                </ion-button>
+
+
+                                <ion-button class="order" expand="block"
+                                            [routerLink]="['/user-sale-detail/', sale.date]"
+                                            size="small" shape="round">
+                                    <div style="font-size: 12px;color: white;">Pedido</div>
+                                    <ion-icon slot="end" name="cart"></ion-icon>
+                                </ion-button>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <div *ngIf="myDelivery && myDelivery.length == 0" class="ion-no-padding ion-text-center">
+                <br><br><br>
+                <img src="../../../assets/img/nomyorders.jpg" height="350px" width="350px" alt="">
+            </div>
+        </div>
+
+
+    </div>
+
+
+</ion-content>

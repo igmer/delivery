@@ -1,0 +1,65 @@
+.profile-userpic{
+    float: none;
+    margin: 0 auto;
+    width: 40%;
+    height: 40%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+  }
+
+  .user-icon {
+    color: rgb(66, 66, 66);
+    font-size: 17px;
+    position: absolute;
+    top: 15px;  
+    
+  }
+
+  .croppedImage{
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+  }
+
+  .posi{
+    position: relative;
+    bottom: 15px;
+    
+  }
+
+  ion-toolbar{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+ }
+
+ .butn{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+ }
+  
+ ion-item{
+  --background: transparent;
+}
+
+ion-card.card-background{
+  --background: url(../../../assets/img/barbg2.jpg) 0 0/100% 100% no-repeat;
+}
+ 
+ion-card.background{
+  --background: url(../../../assets/img/bg3.jpg) 0 0/100% 100% no-repeat;
+}
+
+ion-content.background{
+  --background: url(../../../assets/img/bg3.jpg) 0 0/100% 100% no-repeat;
+}
+
+.cart-icon{
+  position: absolute;
+  top: 16px;
+  color: #0575E6;
+}

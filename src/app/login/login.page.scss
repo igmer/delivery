@@ -1,0 +1,102 @@
+ion-content.background{
+    --background: url(../../assets/img/bg.jpg) 0 0/100% 100% no-repeat;
+}
+
+
+ion-grid{
+    height: 100%;
+  }
+  ion-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:50%;
+  }
+
+  .contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+ 
+
+.fb{
+    position: absolute;
+    top: 136%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    --background: #D3CCE3;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right,  #16a7fc, #046ce4);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #16a7fc, #046ce4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+.google{
+    position: absolute;
+    top: 136%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #e03226, #e63124);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #e03226, #e63124); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+.also{
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.email{
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 305px;
+  border-radius: 12px;
+  opacity:0.7; /* Opacidad 60% */
+}
+
+.password{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 305px;
+  border-radius: 12px;
+  opacity:0.7; /* Opacidad 60% */
+}
+
+.register{
+  position: absolute;
+  top: 120%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  width:150px;
+
+  --background: #0575E6;  /* fallback for old browsers */
+  --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+ --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+.confirm{
+  position: absolute;
+  top: 91%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ width:305px ;
+
+ --background: #0575E6;  /* fallback for old browsers */
+ --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+--background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ 
+}
+

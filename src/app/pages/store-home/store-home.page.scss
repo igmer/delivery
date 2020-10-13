@@ -1,0 +1,203 @@
+ion-toolbar{
+  --background: #0575E6;  /* fallback for old browsers */
+  --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+ --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+ion-content.background{
+  --background: url(../../../assets/img/bg3.jpg) 0 0/100% 100% no-repeat;
+}
+
+ion-item{
+  --background: transparent;
+}
+
+.border{
+  border-radius: 12px;
+}
+
+.cart-icon {
+    font-size: 40px;
+    color: rgb(82, 82, 97);
+  }
+   
+   .cart-length {
+    
+    position: absolute;
+    top: 5px;
+    left: -14px;
+    right: 0px;
+    font-weight: 600;
+    font-size: 1.02em;
+    min-width: 25px;
+    z-index: 10;
+  }
+
+  .notifications-badge {
+ 
+    font-size: 11px;
+    position: absolute;
+    top: 9px;
+    right: 3px;
+
+}
+
+
+.father{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+
+}
+
+.child-title{
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 17px;
+  transform: translate(-50%, -50%);
+  text-shadow: -4px 2px 6px rgba(0,0,0,0.63);
+  
+}
+
+.child-long-title{
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 13px;
+  transform: translate(-50%, -50%);
+  text-shadow: -4px 2px 6px rgba(0,0,0,0.63);
+ 
+}
+
+.child-card-title{
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  text-shadow: 3px 1px 0px #404041;
+  font-size: 28px;
+  
+}
+
+.child-img{
+  opacity: 95%;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+}
+
+
+.child-button{
+  position: absolute;
+  top: 78%;
+  left: 80%;
+  width: 100px;
+  transform: translate(-50%, -50%);
+  opacity: 90%;
+}
+
+*{margin: 0; padding: 0;}
+.caja{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  background: #333944;
+
+}
+.box{
+  width: auto;
+  height: 180px;
+  background: rgb(31, 30, 30);
+  overflow: hidden;
+
+}
+
+.box img{
+  width: 100%;
+  height: auto;
+  
+}
+@supports(object-fit: cover){
+    .box img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+
+ion-card.background{
+  --background: url(../../../assets/img/bg2.jpg) 0 0/100% 100% no-repeat;
+}
+
+.add{
+  --background: #0575E6;  /* fallback for old browsers */
+  --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+ --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+*{margin: 0; padding: 0;}
+.circulo{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  
+}
+.circle{
+  width: 90px;
+  height: 90px;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.circle img{
+  width: 100%;
+  height: auto;
+  
+}
+@supports(object-fit: cover){
+    .circle img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+
+*{margin: 0; padding: 0;}
+.cuadrado{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  
+}
+.square{
+  width: 75%;
+  height: 75%;
+  background: transparent;
+  overflow: hidden;
+ 
+}
+
+.square img{
+  width: 100%;
+  height: auto;
+  
+}
+@supports(object-fit: cover){
+    .square img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}

@@ -1,0 +1,81 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar >
+    <ion-title style="padding-left: 9px;" color="light">
+      ⠀Tienda <fa-icon style="font-size: 15px;color: #ffffff;padding-left: 5px;" [icon]="faStore"></fa-icon>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>     
+    </ion-buttons> 
+    
+    <ion-buttons slot="end">
+    <ion-button (click)="openCart()">
+      <div class="cart-length">{{ cartItemCount | async }}</div>
+      <ion-icon color="light" name="cart" class="cart-icon"></ion-icon>
+      <ion-icon color="light" class="arrow" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated placeholder="Buscar"(ionInput)="searchProduct($event)"></ion-searchbar>  
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content  class="background">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+ 
+<ion-grid>        
+    <ion-row *ngIf="products.length == 0">             
+      <ion-col size="6" *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1]">
+        <ion-card class="background">
+          <ion-card-header> 
+            <ion-skeleton-text animated style="width: 100%"class="card-img-top p-5"></ion-skeleton-text>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-skeleton-text animated style="width: 100%"class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 100%" class="card-img-top"></ion-skeleton-text>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>           
+    </ion-row>  
+  </ion-grid>
+
+
+<ion-grid>        
+    <ion-row *ngIf="products.length > 0">             
+      <ion-col class="ion-no-padding"  size="6" *ngFor="let p of products | productFilter: result">
+        <ion-card class="background">
+           <img [src]="p.img" >   
+          <ion-card-header> 
+                   
+             <div  style="font-size: 18px;color: black;"> <strong>{{ p.name }}</strong> </div>
+            <ion-card-subtitle hidden color="light">{{p.categoryName}}</ion-card-subtitle>
+            <ion-card-subtitle class="ion-text-start" style="color: rgb(58, 58, 58);font-size: 16px;"> {{ p.price | currency:'USD' }}</ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-button class="add" size="small" expand="block" (click)="addToCart(p)">             
+              <ion-icon style="font-size: 23px;"  name="cart"></ion-icon>
+              <ion-icon  name="add"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+     </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+
+</ion-content>

@@ -1,0 +1,33 @@
+ion-toolbar{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    
+    }
+
+.profile{
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+    }
+
+ion-item{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    
+}    
+
+ion-content{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+       
+}
+
+.cart-button{
+   padding-right:60px ;
+   padding-left:60px ;
+}

@@ -1,0 +1,117 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title color="light" >Panel de Administrador</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>
+      <ion-badge *ngIf="user.notifications > 0" class="notifications-badge" color="danger">{{user.notifications}} </ion-badge>
+    </ion-buttons>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card class="card-background">
+    <ion-card-content>
+      <ion-item detail class="ion-text-center" lines="none" [routerLink]="['/admin-user-list/']">
+        <div style="color: #0575E6;font-size: 23px;">
+          <fa-icon [icon]="faUsers"></fa-icon>
+        </div>
+        ⠀ <ion-label>
+          <div style="color: #0575E6;font-size: 20px;">Usuarios</div> 
+          <div style="font-size: 13px; color: gray;" *ngIf="users">Administradores: {{admins.length}}</div>
+          <div style="font-size: 13px; color: gray;" *ngIf="users">Clientes: {{users.length}}</div>    
+          
+        </ion-label>
+     
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-background">
+    <ion-card-content>
+      <ion-item detail class="ion-text-center" lines="none" [routerLink]="['/admin-delivery-list/']">
+        <div style="color: #0575E6;font-size: 23px;">
+          <fa-icon [icon]="faTruck"></fa-icon>
+        </div>
+        ⠀ <ion-label>
+          <div style="color: #0575E6;font-size: 20px;">Deliverys</div> 
+          <div style="font-size: 13px; color: gray;" *ngIf="users">Activos: {{active.length}}
+          </div>         
+          <div style="font-size: 13px; color: gray;" *ngIf="users">Inactivos: {{inactive.length}}
+          </div>
+        </ion-label>
+     
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="card-background">
+    <ion-card-content>
+      <ion-item detail class="ion-text-center" lines="none" [routerLink]="['/admin-sales/']">
+        <div style="color: #0575E6;font-size: 25px;">
+          <fa-icon [icon]=" faCartArrowDown"></fa-icon>
+        </div>
+        <ion-label>
+          <div style="color: #0575E6;font-size: 20px;">Pedidos</div> 
+          <div style="font-size: 13px; color: gray;" *ngIf="noDelivered && delivered">
+            Entregados: {{delivered.length}} <br>
+            En Proceso: {{process.length}} <br>
+            <div *ngIf="noDelivered.length == 0"> Sin Entregar: {{noDelivered.length}} </div>
+            <div *ngIf="noDelivered.length > 0" style="color: red;"> Sin Entregar: {{noDelivered.length}} </div>
+          </div>
+        </ion-label>
+
+        ⠀⠀
+     
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+ 
+  <ion-card class="card-background">
+    <ion-card-content>
+      <ion-item detail class="ion-text-center" lines="none" [routerLink]="['/admin-category-list/']">
+        <div style="color: #0575E6;font-size: 23px;">
+          <fa-icon [icon]="faStore"></fa-icon>
+        </div>
+        <ion-label>
+          <div style="color: #0575E6;font-size: 20px;">Tienda</div> 
+          <div style="font-size: 13px; color: gray;" *ngIf="products">Categorías: {{categorys.length}}
+          </div>
+          <div style="font-size: 13px; color: gray;" *ngIf="products">Productos: {{products.length}}
+          </div>
+        </ion-label>
+        ⠀⠀
+   
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
+
+  <ion-card class="card-background">
+    <ion-card-content>
+      <ion-item detail class="ion-text-center" lines="none" [routerLink]="['/admin-news-list/']">
+        <div style="color: #0575E6;font-size: 26px;">
+          <ion-icon slot="start" name="newspaper"></ion-icon>
+        </div>
+        <ion-label>
+          <div style="color: #0575E6;font-size: 20px;">Anuncios</div> 
+          <div style="font-size: 13px; color: gray;" *ngIf="news">Anuncios: {{news.length}}
+          </div>          
+        </ion-label>
+        ⠀⠀
+   
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

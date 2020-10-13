@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">
+      Administrar Usuarios
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>     
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated placeholder="Buscar" (ionInput)="searchUser($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+
+   
+    <div *ngFor="let a of admin | userFilter: result">
+
+      <div *ngIf="a.photo">
+        <ion-item [routerLink]="['/admin-user-profile/', a.id]" detail>
+          <ion-avatar slot="start">
+            <img src="{{a.photo}}">
+          </ion-avatar>
+          <ion-label> <strong>{{a.name}}</strong>                
+          </ion-label>     
+        </ion-item>
+  </div>
+  
+  <div *ngIf="!a.photo">
+    <ion-item [routerLink]="['/admin-user-profile/', a.id]" detail>
+      <ion-avatar slot="start">
+        <img src="../../../assets/img/profile-default.png">
+      </ion-avatar>
+      <ion-label> <strong>{{a.name}}</strong>        
+      </ion-label>
+    </ion-item>
+  </div>
+    </div>
+    
+ <div *ngFor="let user of users | userFilter: result">
+      
+      <div *ngIf="user.photo">
+      <ion-item [routerLink]="['/admin-user-profile/', user.id]" detail>
+        <ion-avatar slot="start">
+          <img src="{{user.photo}}">
+        </ion-avatar>
+        <ion-label> <strong>{{user.name}}</strong> 
+              <div style="color: gray;font-size: 13px;">Compras: {{user.purchases}}</div>
+        </ion-label>     
+      </ion-item>
+</div>
+
+<div *ngIf="!user.photo">
+  <ion-item [routerLink]="['/admin-user-profile/', user.id]" detail>
+    <ion-avatar slot="start">
+      <img src="../../../assets/img/profile-default.png">
+    </ion-avatar>
+    <ion-label> <strong>{{user.name}}</strong> 
+      <div style="color: gray;font-size: 13px;">Compras: {{user.purchases}}</div>
+    </ion-label>
+  </ion-item>
+</div>
+    </div>
+
+
+  </ion-list>
+
+
+</ion-content>

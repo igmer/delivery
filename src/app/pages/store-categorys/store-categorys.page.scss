@@ -1,0 +1,132 @@
+ion-fab-button {
+    height: 70px;
+    width: 70px;
+  }
+
+  .arrow {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+  }
+   
+  .cart-icon {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+  }
+   
+   .cart-length {
+    color: rgb(66, 66, 66);
+    position: absolute;
+    top: 5px;
+    left: -14px;
+    right: 0px;
+    font-weight: 600;
+    font-size: 1.02em;
+    min-width: 25px;
+    z-index: 10;
+  }
+
+  .selected{ 
+    color: #68f8bc ;
+    }
+
+    ion-toolbar{
+      --background: #0575E6;  /* fallback for old browsers */
+      --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+     --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      
+    }
+    
+  .notifications-badge {
+ 
+    font-size: 11px;
+    position: absolute;
+    top: 9px;
+    right: 3px;
+
+}
+
+.price-color{
+  color:  rgb(218, 218, 218);
+  font-size: 16px;
+}
+
+.add{
+  --background: #0575E6;  /* fallback for old browsers */
+      --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+     --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      
+}
+
+
+ion-grid{
+  height: 100%;
+}
+ion-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.father{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+ 
+}
+
+.child-img{
+  opacity: 100%;
+}
+
+.child-title{
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 3px 1px 0px #404041;
+  font-size: 30px;
+}
+
+
+.child-button{
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  width: 150px;
+  transform: translate(-50%, -50%);
+  opacity: 90%;
+}
+
+
+*{margin: 0; padding: 0;}
+.caja{
+  display: flex;
+  flex-flow: column wrap;
+  margin: 2px;
+  justify-content: center;
+  align-items: center;
+  background: #333944;
+
+}
+.box{
+  width: auto;
+  height: 20%;
+  background: rgb(31, 30, 30);
+  overflow: hidden;
+
+}
+
+.box img{
+  width: 100%;
+  height: auto;
+  
+}
+@supports(object-fit: cover){
+    .box img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}

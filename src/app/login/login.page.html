@@ -1,0 +1,35 @@
+<ion-content class="background">
+
+
+    <div class="contenedor">
+        <img src="../../assets/img/flow.png" alt="">
+        <ion-item class="email">
+            <ion-input type="email" [(ngModel)]="email" placeholder="Email" required></ion-input>
+        </ion-item>
+
+        <ion-item class="password">
+            <ion-input type="password" [(ngModel)]="password" placeholder="Contraseña" required></ion-input>
+        </ion-item>
+        <ion-button class="confirm" (click)="loginWithEmail()" expand="block">
+            <ion-icon slot="end" name="log-in"></ion-icon>
+            <div style="font-size: 12px;color: aliceblue;">⠀ Acceder</div>
+        </ion-button>
+
+        <div class="also" style="font-size: 12px;color: gray;">También puedes acceder con:</div>
+
+        <ion-button class="register" (click)="createUser()" expand="block">
+            <ion-icon slot="end" name="person-add"></ion-icon>
+            <div style="font-size: 12px;color: aliceblue;">Registrate</div>
+        </ion-button>
+        <ion-button class="fb" (click)="loginFacebook()" expand="block">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </ion-button>
+        <ion-button class="google" (click)="loginGoogle()" expand="block">
+            <ion-icon name="logo-google"></ion-icon>
+        </ion-button>
+    </div>
+
+    <ion-input type="text" hidden [(ngModel)]="token"></ion-input>
+
+
+</ion-content>

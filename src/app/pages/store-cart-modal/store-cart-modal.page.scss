@@ -1,0 +1,87 @@
+.text-little{
+    font-size: 15px;
+}
+
+.text-little2{
+    font-size: 12px;
+}
+
+.down{
+ position: absolute;
+ top: 0px;
+ 
+}
+
+.amount-left{
+    top: 6px;
+    left: 17px;  
+}
+
+.button-pay{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+
+.ex{
+    position: absolute;
+    top: 10px;
+    left: 85%;
+    
+}
+
+.center-grid{
+    height: 100%;
+  }
+  .center-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .todown{
+      position: relative;
+      top: 5px;
+  }
+
+  .p-img{
+    opacity: 100%;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+  }
+
+
+  
+*{margin: 0; padding: 0;}
+.circulo{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  
+}
+.circle{
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+.circle img{
+  width: 100%;
+  height: auto;
+  
+}
+@supports(object-fit: cover){
+    .circle img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}

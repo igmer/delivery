@@ -1,0 +1,39 @@
+ion-toolbar{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+  }
+
+  ion-content.background{
+    --background: url(../../../assets/img/bg3.jpg) 0 0/100% 100% no-repeat;
+  }
+  
+  .cart-icon {
+    font-size: 40px;
+    color: rgb(82, 82, 97);
+  }
+   
+   .cart-length {
+    
+    position: absolute;
+    top: 5px;
+    left: -14px;
+    right: 0px;
+    font-weight: 600;
+    font-size: 1.02em;
+    min-width: 25px;
+    z-index: 10;
+  }
+
+  ion-card.background{
+    --background: url(../../../assets/img/bg2.jpg) 0 0/100% 100% no-repeat;
+  }
+  
+  .add{
+    --background: #0575E6;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to right, #012bc2, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+   --background: linear-gradient(to right, #012bc2, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+  }
+  

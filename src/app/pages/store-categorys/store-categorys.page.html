@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar >
+    <ion-title style="padding-left: 9px;" color="light">
+      ⠀Tienda <fa-icon style="font-size: 15px;color: #ffffff;padding-left: 5px;" [icon]="faStore"></fa-icon>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>
+      <ion-badge *ngIf="user.notifications > 0" class="notifications-badge" color="danger">{{user.notifications}} </ion-badge>
+    </ion-buttons> 
+    
+    <ion-buttons slot="end">
+    <ion-button (click)="openCart()">
+    <div class="cart-length">{{ cartItemCount | async }}</div>
+      <ion-icon name="cart" class="cart-icon"></ion-icon>
+      <ion-icon name="arrow-forward-outline" class="arrow"></ion-icon>
+      </ion-button>
+    </ion-buttons>    
+    
+  </ion-toolbar>  
+
+<ion-toolbar>
+  <ion-searchbar animated placeholder="Buscar categoría" (ionInput)="searchCategory($event)">
+  </ion-searchbar>
+</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content> 
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<div *ngIf="categorys && categorys.length > 0">
+  <ion-grid class="ion-no-padding ion-no-border">
+    <ion-row class="ion-no-padding ion-no-border">
+      <ion-col class="ion-no-padding ion-no-border" size-lg="3" size-md="4" size-sm="6" size="12" *ngFor="let p of categorys | categoryFilter: result">
+        
+
+        <div (click)="goToProducts(p.id)" class="caja">
+          <div class="box">
+            <img style="opacity: 90%;" src="{{p.img}}">
+            <div class="child-title ion-text-center"> <strong>{{p.name}}</strong>   </div> 
+            
+            <ion-button class="child-button" color="light" expand="block" shape="round" (click)="goToProducts(p.name)" >
+              
+               <fa-icon style="font-size: 20px;color: #1f1f1f;" slot="end" [icon]="faStore"></fa-icon>
+              </ion-button>
+          </div>
+        </div>
+      </ion-col>
+      <br>
+    </ion-row>
+  </ion-grid>
+</div>
+
+
+
+
+
+
+</ion-content>
+

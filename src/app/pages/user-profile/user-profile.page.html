@@ -1,0 +1,134 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>
+      <ion-badge *ngIf="user.notifications > 0" class="notifications-badge" color="danger">{{user.notifications}} </ion-badge>
+    </ion-buttons>
+    <ion-title>
+      <div style="font-size: 18px;color: rgb(255, 255, 255);">Perfil
+        <ion-icon slot="end" class="posi" name="person-circle-outline"></ion-icon>
+      </div>
+    </ion-title>
+
+ 
+
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+<ion-content >
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+
+  <ion-card class="background ion-no-margin">
+
+    <ion-card-content>
+     
+
+      <div class="ion-text-center">
+
+        <div *ngIf="user.photo">
+          <img class="croppedImage pb-1" src="{{user.photo}}">
+        </div>
+        <div *ngIf="!user.photo">
+          <img class="croppedImage pb-1" src="../../assets/img/profile-default.png">
+        </div>
+      </div>
+      <ion-item lines="none" class="ion-text-center ion-no-margin ion-no-border">
+        <ion-label>
+          <h1>{{user.name}}</h1>
+        </ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon color="tertiary" slot="start" name="mail-outline"></ion-icon>
+        <ion-label>{{user.email}}
+          <div style="font-size: 14px; color: gray;">Correo</div>
+        </ion-label>
+
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon color="tertiary" slot="start" name="call-outline"></ion-icon>
+        <ion-label>{{user.phonenumber}}
+          <div style="font-size: 14px; color: gray;">Teléfono</div>
+        </ion-label>
+
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon color="tertiary" slot="start" name="earth-outline"></ion-icon>
+        <ion-label class="ion-text-wrap">{{user.address}}
+          <div style="font-size: 14px; color: gray;">Dirección</div>
+        </ion-label>
+      </ion-item>
+
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button [routerLink]="['/user-edit-profile/', uid]" expand="block" class="update" expand="block"
+              shape="round">
+              <ion-icon slot="start" name="create-outline"></ion-icon>
+              <div style="font-size: 12px;">
+                Editar <br> Perfil
+              </div>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+
+
+  </ion-card>
+ 
+  <ion-card class="card-background ion-no-margin ion-text-center"> 
+    <ion-label class="ion-padding">
+      <h1>
+    <ion-icon class="cart-icon" name="cart"></ion-icon>⠀⠀Compras    
+    </h1></ion-label>
+  </ion-card>
+
+      <ion-grid *ngIf="sales && sales.length > 0" fixed>
+        <ion-row>
+          <ion-col size="6" *ngFor="let sale of sales">
+            <ion-card class="ion-text-center background">
+              <ion-card-header>
+                <img *ngIf="sale.delivered == 'No'" src="../../../assets/img/delivery_iconwait.png" alt="">
+                <img *ngIf="sale.delivered == 'Si'" src="../../../assets/img/delivery_icon_ready.png" alt="">
+                <br>
+
+                <div style="font-size: 16px;color: rgb(92, 92, 92);" class="pb-1">
+                  Entregado: {{sale.delivered}} <br>
+                  <ion-icon name="calendar-outline"></ion-icon> {{sale.date | date:'dd/MM/yyyy'}} <br>
+                  <ion-icon name="time-outline"></ion-icon> {{sale.date| date:'shortTime'}}
+                </div>
+
+              </ion-card-header>
+              <ion-card-content>     
+               <ion-button class="butn" expand="block" [routerLink]="['/user-sale-detail/', sale.date]"
+                  size="small" shape="round">              
+                  <ion-icon slot="end" name="document-text"></ion-icon>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="sales && sales.length == 0" class="ion-no-padding ion-text-center">
+        <br><br>
+        <img src="../../../assets/img/nopurchases.jpg" height="350px" width="350px" alt="">
+      </div>
+    
+
+</ion-content>
+
+
+
+ 
+

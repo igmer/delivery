@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">Nueva Categoría</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="['/']"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-card *ngIf="croppedImage">
+        <img class="p-2" id="image" width="200px" height="200px">
+      </ion-card>
+
+      <img *ngIf="!croppedImage" src="../../../assets/img/emptyImgIcon.png" width="200px" height="200px" alt="">
+
+      <ion-button (click)="chooseImage()" class="butn" size="small" shape="round">
+        <ion-icon slot="start" name="image-outline"></ion-icon>
+        <div style="font-size: 12px; color: white;">Seleccionar imagen</div>
+      </ion-button>
+
+      <ion-item lines="none" *ngIf="isUploadStart" style="margin-top: 30px;">
+        <ion-spinner slot="start"></ion-spinner>
+
+        <ion-label>
+          <h2 class="ion-text-center">Subiendo...</h2>
+
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" placeholder="Nombre de la categoría" [(ngModel)]="category.name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input type="text" placeholder="Descripción de la categoría" [(ngModel)]="category.description" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-input hidden type="text" placeholder="imagen" [(ngModel)]="category.img"></ion-input>
+
+
+      <ion-button expand="block" class="ion-padding butn" (click)="addCategory()">
+        Crear Categoría
+      </ion-button>
+      <br>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

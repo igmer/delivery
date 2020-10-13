@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title color="light">Editar Usuario</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="['admin-user-profile/',post.id]"> </ion-back-button>
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    
+    <ion-card *ngIf="croppedImage">
+      <img class="p-2" id="image">
+    </ion-card>
+<div *ngIf="!croppedImage && !user.photo">
+    <img class="croppedImage" src="../../assets/img/profile-default.png"  alt="">
+</div>
+    <ion-card *ngIf="user.photo && !croppedImage">
+     <img class="p-2" src="{{user.photo}}"  alt="">
+    </ion-card>
+
+    <ion-button class="butn" (click)="chooseImage()" size="small" shape="round">
+      <ion-icon slot="start" name="image-outline"></ion-icon>
+      <div style="font-size: 12px; color: white;">Cambiar Foto</div> 
+    </ion-button>
+
+    <ion-item lines="none" *ngIf="isUploadStart" style="margin-top: 30px;">
+      <ion-spinner slot="start"></ion-spinner>
+    
+      <ion-label>
+        <h2 class="ion-text-center">Subiendo...</h2>
+        <p class="ion-text-center">
+          {{percent}}%
+        </p>
+      </ion-label>
+    </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="user.name" required></ion-input>
+  </ion-item> 
+  
+  <ion-list>
+    <ion-item>
+    <ion-label>Tipo de Usuario</ion-label>
+    <ion-select [(ngModel)]="user.role" placeholder="Selecciona uno">
+      <ion-select-option value="admin">Administrador</ion-select-option>     
+      <ion-select-option value="user">Cliente</ion-select-option>  
+      <ion-select-option value="delivery">Delivery</ion-select-option>   
+    </ion-select>
+  </ion-item>    
+</ion-list>
+
+  <ion-item>
+    <ion-label position="floating">Nº de Teléfono</ion-label>
+    <ion-input type="number" [(ngModel)]="user.phonenumber" required></ion-input>
+  </ion-item>  
+    
+  <ion-item>
+    <ion-label position="floating">Dirección</ion-label>
+    <ion-textarea [(ngModel)]="user.address" required></ion-textarea>
+  </ion-item>
+  
+  <ion-button expand="block" class="butn ion-padding" (click)="updateUser(user)">
+    Guardar cambios
+  </ion-button>
+  <br>
+</ion-card-content>
+</ion-card>
+</ion-content>

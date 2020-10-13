@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">Editar Producto</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="['/']"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-card *ngIf="croppedImage">
+        <img class="p-2" id="image" width="200px" height="200px">
+      </ion-card>
+
+      <img *ngIf="!croppedImage && !product.img" src="../../../assets/img/emptyImgIcon.png" width="200px" height="200px" alt="">
+
+      <ion-card *ngIf="product.img && !croppedImage">
+       <img class="p-2" src="{{product.img}}" alt="">
+      </ion-card>
+     
+
+      <ion-button (click)="chooseImage()" class="butn" size="small" shape="round">
+        <ion-icon slot="start" name="image-outline"></ion-icon>
+        <div style="font-size: 12px; color: white;">Seleccionar imagen</div>
+      </ion-button>
+
+      <ion-item lines="none" *ngIf="isUploadStart" style="margin-top: 30px;">
+        <ion-spinner slot="start"></ion-spinner>
+
+        <ion-label>
+          <h2 class="ion-text-center">Subiendo...</h2>
+
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" placeholder="Nombre del Producto" [(ngModel)]="product.name" required></ion-input>
+      </ion-item>
+
+
+      <ion-input hidden type="text" placeholder="imagen" [(ngModel)]="product.img"></ion-input>
+
+
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input type="number" placeholder="Precio" [(ngModel)]="product.price" required></ion-input>
+      </ion-item>
+
+
+      <ion-button expand="block" class="ion-padding butn" (click)="updateProduct(product)">
+        Guardar Cambios
+      </ion-button>
+      <br>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light">
+      Pedidos
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" menu="main-menu">        
+      </ion-menu-button>     
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment class="background" color="primary" [(ngModel)]="yudsegment">
+    <ion-segment-button value="delivered">
+      <ion-label><div style="font-size: 12px;">Entregados</div></ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="inProcess">
+      <ion-label><div style="font-size: 12px;">En Proceso</div></ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="noDelivered">
+      <ion-label><div style="font-size: 12px;">Sin Entregar</div></ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="yudsegment">
+
+    <div *ngSwitchCase="'delivered'">
+
+      <ion-grid *ngIf="delivered && delivered.length > 0" fixed>
+        <ion-row>
+          <ion-col size="6" *ngFor="let sale of delivered">
+            <ion-card class="ion-text-center background">
+              <ion-card-header>
+                <img *ngIf="sale.delivered == 'No'" src="../../../assets/img/delivery_iconwait.png" alt="">
+                <img *ngIf="sale.delivered == 'Si'" src="../../../assets/img/delivery_icon_ready.png" alt="">
+                <br>
+
+                <div style="font-size: 16px;color: rgb(92, 92, 92);" class="pb-1">                
+                  <ion-icon name="calendar-outline"></ion-icon> {{sale.date | date:'dd/MM/yyyy'}} <br>
+                  <ion-icon name="time-outline"></ion-icon> {{sale.date| date:'shortTime'}}
+                </div>
+
+              </ion-card-header>
+              <ion-card-content>     
+               <ion-button class="butn" expand="block"  (click)="OptionsProcessAndDeliver(sale.date, sale.client, sale.delivery)"
+                  size="small" shape="round">  
+                      
+                  <ion-icon  name="apps"></ion-icon>
+                </ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="delivered && delivered.length == 0" class="ion-no-padding ion-text-center">
+        <br><br>
+        <img src="../../../assets/img/donenodelivery.jpg" height="350px" width="350px" alt="">
+      </div>
+
+  </div>
+
+
+  <div *ngSwitchCase="'inProcess'">
+
+    <ion-grid *ngIf="inProcess && inProcess.length > 0" fixed>
+      <ion-row>
+        <ion-col size="6" *ngFor="let sale of inProcess">
+          <ion-card class="ion-text-center background">
+            <ion-card-header>
+              <img src="../../../assets/img/delivery_iconwait.png" alt="">
+            
+              <div style="font-size: 16px;color: rgb(92, 92, 92);" class="pb-1">               
+                <ion-icon name="calendar-outline"></ion-icon> {{sale.date | date:'dd/MM/yyyy'}} <br>
+                <ion-icon name="time-outline"></ion-icon> {{sale.date| date:'shortTime'}}
+              </div>
+
+            </ion-card-header>
+            <ion-card-content>     
+             <ion-button class="butn" expand="block" (click)="OptionsProcessAndDeliver(sale.date, sale.client, sale.delivery)"
+                size="small" shape="round">              
+                          
+                <ion-icon name="apps"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div *ngIf="inProcess && inProcess.length == 0" class="ion-no-padding ion-text-center">
+      <br><br>
+      <img src="../../../assets/img/noprocess.jpg" height="350px" width="350px" alt="">
+    </div>
+
+    </div>
+
+
+
+  <div *ngSwitchCase="'noDelivered'">
+
+    <ion-grid *ngIf="noDelivered && noDelivered.length > 0" fixed>
+      <ion-row>
+        <ion-col size="6" *ngFor="let sale of noDelivered">
+          <ion-card class="ion-text-center background">
+            <ion-card-header>
+              <img *ngIf="sale.delivered == 'No'" src="../../../assets/img/delivery_iconnon.png" alt="">
+            
+              <div style="font-size: 16px;color: rgb(92, 92, 92);" class="pb-1">           
+                <ion-icon name="calendar-outline"></ion-icon> {{sale.date | date:'dd/MM/yyyy'}} <br>
+                <ion-icon name="time-outline"></ion-icon> {{sale.date| date:'shortTime'}}
+              </div>
+
+            </ion-card-header>
+            <ion-card-content>     
+             <ion-button class="butn" expand="block" (click)="OptionsNoDeliver(sale.date, sale.client)"
+                size="small" shape="round">              
+                          
+                <ion-icon name="apps"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <div *ngIf="noDelivered && noDelivered.length == 0" class="ion-no-padding ion-text-center">
+      <br><br>
+      <img src="../../../assets/img/nodelivery.jpg" height="350px" width="350px" alt="">
+    </div>
+
+    </div>
+  </div>
+
+ 
+</ion-content>
